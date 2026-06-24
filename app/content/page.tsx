@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ArticleCard from "@/components/ArticleCard";
 import YouTubeCard from "@/components/YouTubeCard";
 import { getHashnodePosts } from "@/lib/hashnode";
