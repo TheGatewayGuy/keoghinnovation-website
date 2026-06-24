@@ -58,7 +58,16 @@ export async function getHashnodePosts(count = 6): Promise<HashnodePost[]> {
     const xml = await res.text();
 
     // Split into <item> blocks
-    const items = xml.match(/<item>([\s\S]*?)<\/item>/g) ?? [];
+    const allItems = xml.match(/<item>([\s\S]*?)<\/item>/g) ?? [];
+
+    // Filter out posts not yet ready to feature publicly
+    const EXCLUDED_SLUGS = [
+      "monetize-your-mcp-server-usage-based-billing-for-the-github-mcp-server-with-kong-ai-gateway",
+    ];
+    const items = allItems.filter((item) => {
+      const link = extractFirst(item, "link") || extractFirst(item, "guid");
+      return !EXCLUDED_SLUGS.some((slug) => link.includes(slug));
+    });
 
     return items.slice(0, count).map((item) => {
       const title = decodeEntities(extractFirst(item, "title"));
