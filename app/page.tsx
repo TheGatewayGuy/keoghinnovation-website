@@ -41,7 +41,7 @@ export default async function Home() {
         <div className="absolute w-[600px] h-[600px] rounded-full hero-glow top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] pointer-events-none" />
 
         {/* Badge */}
-        <div className="relative inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-[#93b4fd] text-[0.75rem] font-bold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-8">
+        <div className="relative inline-flex items-center gap-2 bg-accent/10 border border-accent/30 text-[#5ab3e8] text-[0.75rem] font-bold uppercase tracking-[0.08em] px-4 py-1.5 rounded-full mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_6px_#4ade80]" />
           Platform & AI Consulting
         </div>

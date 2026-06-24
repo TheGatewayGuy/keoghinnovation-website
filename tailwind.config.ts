@@ -15,9 +15,13 @@ const config: Config = {
           3: "#111f38",
         },
         accent: {
-          DEFAULT: "#2563eb",
-          dark: "#1d4ed8",
-          darker: "#1e40af",
+          DEFAULT: "#0F76BE",
+          dark: "#0d6aaa",
+          darker: "#002339",
+        },
+        brand: {
+          blue: "#0F76BE",
+          dark: "#002339",
         },
         muted: "#8a94a6",
         offwhite: "#f5f5f0",

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const services = [
   "API Management & Kong Gateway",
@@ -24,8 +25,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href="/" className="font-display font-bold text-lg tracking-tight text-offwhite block mb-4">
-              Keogh<span className="text-accent">Innovation</span>
+            <Link href="/" className="inline-block mb-4">
+              <Image src="/keogh-lockup-white.svg" alt="Keogh Innovation" width={180} height={36} className="h-8 w-auto" />
             </Link>
             <p className="text-muted text-sm leading-relaxed max-w-[240px]">
               Specialist consulting in platform engineering, API management, and AI strategy. Founded 2024.

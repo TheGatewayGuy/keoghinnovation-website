@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
@@ -19,8 +20,15 @@ export default function Nav() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 h-[68px] bg-navy/90 backdrop-blur-md border-b border-white/[0.07]">
       {/* Logo */}
-      <Link href="/" className="font-display font-bold text-[1.05rem] tracking-tight text-offwhite">
-        Keogh<span className="text-accent">Innovation</span>
+      <Link href="/" className="flex items-center h-10 shrink-0">
+        <Image
+          src="/keogh-lockup-white.svg"
+          alt="Keogh Innovation"
+          width={200}
+          height={40}
+          className="h-9 w-auto"
+          priority
+        />
       </Link>
 
       {/* Desktop links */}
@@ -42,7 +50,7 @@ export default function Nav() {
       {/* CTA */}
       <Link
         href="/contact"
-        className="hidden md:inline-flex items-center gap-1 bg-accent hover:bg-accent-dark text-white text-[0.85rem] font-semibold px-4 py-2 rounded-md"
+        className="hidden md:inline-flex items-center gap-1 bg-accent hover:bg-accent-dark text-white text-[0.85rem] font-semibold px-4 py-2 rounded-md transition-colors"
       >
         Get in Touch
       </Link>
@@ -57,9 +65,7 @@ export default function Nav() {
           {open ? (
             <path d="M4 4L18 18M18 4L4 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           ) : (
-            <>
-              <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </>
+            <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           )}
         </svg>
       </button>

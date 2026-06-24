@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     siteName: "Keogh Innovation",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
