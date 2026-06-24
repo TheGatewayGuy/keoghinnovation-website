@@ -80,9 +80,12 @@ export async function getHashnodePosts(count = 6): Promise<HashnodePost[]> {
       // Slug from URL
       const slug = link.split("/").filter(Boolean).pop() ?? "";
 
-      // Cover image: look for og:image or first img in content
-      const imgMatch = contentEncoded.match(/<img[^>]+src=["']([^"']+)["']/);
-      const coverUrl = imgMatch?.[1] ?? null;
+      // Cover image: look specifically for Hashnode's cover image CDN path
+      const coverMatch =
+        contentEncoded.match(/src="(https:\/\/cdn\.hashnode\.com\/uploads\/covers\/[^"]+)"/) ??
+        contentEncoded.match(/src='(https:\/\/cdn\.hashnode\.com\/uploads\/covers\/[^']+)'/) ??
+        contentEncoded.match(/<img[^>]+src=["']([^"']+)["']/);
+      const coverUrl = coverMatch?.[1] ?? null;
 
       return {
         title,

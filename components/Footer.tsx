@@ -15,6 +15,7 @@ const content = [
 
 const connect = [
   { label: "LinkedIn", href: "https://www.linkedin.com/company/keogh-innovation/" },
+  { label: "Conferences & Talks", href: "/conferences" },
   { label: "Contact Us", href: "/contact" },
 ];
 

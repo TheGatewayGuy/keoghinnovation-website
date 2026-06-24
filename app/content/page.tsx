@@ -14,29 +14,6 @@ export const revalidate = 3600;
 
 const PINNED_VIDEO_ID = "fMDMgSNbmC8";
 
-const conferenceTalks = [
-  {
-    id: "8-HgAIUTEHM",
-    title: "Create, Explore, Manage: Improving Developer Experience with Konnect Developer Portal",
-    event: "Kong Summit",
-    description:
-      "Developer experience is often the difference between an API platform engineers love and one they route around. In this talk, Andrew explores how Kong's Konnect Developer Portal changes the dynamic — giving API consumers a self-serve hub to discover, explore, and subscribe to APIs without hunting down documentation or chasing approvals. The session covers the end-to-end flow from publishing APIs to the portal through to consumer onboarding, credential management, and access control — all within Konnect's managed control plane. Practical, demo-driven, and grounded in real-world API platform challenges.",
-  },
-  {
-    id: "t7fFNvaE768",
-    title: "Federated Data Authorization using Semantic Policies",
-    event: "Conference Talk",
-    description:
-      "Authorization at the data layer is one of the harder problems in platform engineering — especially when data lives across multiple services, teams, and domains. This talk digs into federated data authorization: how to enforce fine-grained, context-aware access control across a distributed system without creating a centralized bottleneck or duplicating policy logic everywhere. Andrew introduces semantic policies as a way to express authorization rules in human-readable, intent-driven terms — and shows how these can be evaluated at the API gateway layer using Kong, keeping enforcement consistent across services without coupling it to application code.",
-  },
-  {
-    id: "zSX_k2ewSxY",
-    title: "Next Generation Observability: Kong + AI",
-    event: "Kong Summit",
-    description:
-      "Traditional observability — metrics, logs, traces — tells you what happened. AI-powered observability starts to tell you why, and what to do about it. In this session, Andrew explores how Kong Gateway's deep visibility into API traffic can be combined with AI to move from reactive dashboards to proactive intelligence. Topics include using LLMs to summarise and interpret traffic anomalies, correlating Kong's request/response logs with model performance in AI gateway deployments, and how the Kong AI Gateway's native observability features give platform teams the signal they need to operate AI infrastructure confidently in production.",
-  },
-];
 
 export default async function ContentPage() {
   const [hashnodePosts, devtoPosts, youtubeVideos] = await Promise.all([
@@ -130,50 +107,16 @@ export default async function ContentPage() {
         </div>
       </section>
 
-      {/* ── CONFERENCE TALKS ── */}
-      <section className="bg-navy-2 border-b border-white/[0.07] px-6 md:px-10 py-20">
-        <div className="max-w-6xl mx-auto">
-          <p className="text-accent text-[0.72rem] font-bold uppercase tracking-[0.14em] mb-3">Speaking</p>
-          <h2 className="font-display font-bold text-4xl md:text-5xl tracking-tight mb-4">Conference Talks</h2>
-          <p className="text-muted text-lg max-w-xl leading-relaxed mb-14">
-            Andrew speaks regularly at conferences and meetups on Kong AI Gateway, API platform engineering, and AI observability.
-          </p>
-
-          <div className="space-y-16">
-            {conferenceTalks.map(({ id, title, event, description }) => (
-              <div key={id} className="grid md:grid-cols-2 gap-10 items-start pb-16 border-b border-white/[0.06] last:border-0 last:pb-0">
-                {/* Video embed */}
-                <div className="rounded-xl overflow-hidden border border-white/[0.07] bg-navy-3">
-                  <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-                    <iframe
-                      src={`https://www.youtube.com/embed/${id}?rel=0`}
-                      title={title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="absolute inset-0 w-full h-full"
-                    />
-                  </div>
-                </div>
-
-                {/* Description */}
-                <div>
-                  <span className="inline-block text-[0.7rem] font-bold uppercase tracking-wider text-accent bg-accent/10 border border-accent/20 px-2.5 py-1 rounded mb-4">
-                    {event}
-                  </span>
-                  <h3 className="font-display font-bold text-xl md:text-2xl tracking-tight mb-4 leading-snug">{title}</h3>
-                  <p className="text-muted text-sm leading-relaxed mb-5">{description}</p>
-                  <a
-                    href={`https://www.youtube.com/watch?v=${id}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-accent hover:text-offwhite text-sm font-semibold"
-                  >
-                    Watch on YouTube →
-                  </a>
-                </div>
-              </div>
-            ))}
+      {/* Conference talks teaser */}
+      <section className="bg-navy-3 border-b border-white/[0.07] px-6 md:px-10 py-10">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <p className="text-accent text-[0.72rem] font-bold uppercase tracking-[0.14em] mb-1">Speaking</p>
+            <p className="font-display font-bold text-lg text-offwhite">Watch Andrew&apos;s conference talks →</p>
           </div>
+          <Link href="/conferences" className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-display font-semibold px-5 py-2.5 rounded-lg text-sm shrink-0">
+            View All Talks
+          </Link>
         </div>
       </section>
 
