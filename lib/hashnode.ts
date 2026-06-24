@@ -9,44 +9,83 @@ export interface HashnodePost {
   coverImage: { url: string } | null;
 }
 
-const HASHNODE_GQL = "https://gql.hashnode.com/";
-const PUBLICATION_HOST = "thegatewayguy.hashnode.dev";
+const RSS_URL = "https://thegatewayguy.hashnode.dev/rss.xml";
+
+function decodeCDATA(str: string): string {
+  return str.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").trim();
+}
+
+function decodeEntities(str: string): string {
+  return str
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'");
+}
+
+function extractAll(xml: string, tag: string): string[] {
+  const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "g");
+  const results: string[] = [];
+  let m;
+  while ((m = re.exec(xml)) !== null) {
+    results.push(decodeCDATA(m[1]).trim());
+  }
+  return results;
+}
+
+function extractFirst(xml: string, tag: string): string {
+  const m = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`));
+  return m ? decodeCDATA(m[1]).trim() : "";
+}
+
+// Rough reading-time estimate: ~200 words/min
+function estimateReadTime(text: string): number {
+  const words = text.replace(/<[^>]+>/g, " ").split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.round(words / 200));
+}
 
 export async function getHashnodePosts(count = 6): Promise<HashnodePost[]> {
   try {
-    const query = `
-      query GetPosts($host: String!, $first: Int!) {
-        publication(host: $host) {
-          posts(first: $first) {
-            edges {
-              node {
-                title
-                brief
-                slug
-                url
-                publishedAt
-                readTimeInMinutes
-                tags { name }
-                coverImage { url }
-              }
-            }
-          }
-        }
-      }
-    `;
-
-    const res = await fetch(HASHNODE_GQL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query, variables: { host: PUBLICATION_HOST, first: count } }),
-      next: { revalidate: 3600 }, // ISR: revalidate every hour
+    const res = await fetch(RSS_URL, {
+      headers: { Accept: "application/rss+xml, application/xml, text/xml" },
+      next: { revalidate: 3600 },
     });
 
-    if (!res.ok) throw new Error(`Hashnode API error: ${res.status}`);
+    if (!res.ok) throw new Error(`Hashnode RSS error: ${res.status}`);
 
-    const data = await res.json();
-    const edges = data?.data?.publication?.posts?.edges ?? [];
-    return edges.map((e: { node: HashnodePost }) => e.node);
+    const xml = await res.text();
+
+    // Split into <item> blocks
+    const items = xml.match(/<item>([\s\S]*?)<\/item>/g) ?? [];
+
+    return items.slice(0, count).map((item) => {
+      const title = decodeEntities(extractFirst(item, "title"));
+      const link = extractFirst(item, "link") || extractFirst(item, "guid");
+      const description = decodeEntities(extractFirst(item, "description").replace(/<[^>]+>/g, " ").trim());
+      const pubDate = extractFirst(item, "pubDate");
+      const categories = extractAll(item, "category");
+      const contentEncoded = extractFirst(item, "content:encoded");
+
+      // Slug from URL
+      const slug = link.split("/").filter(Boolean).pop() ?? "";
+
+      // Cover image: look for og:image or first img in content
+      const imgMatch = contentEncoded.match(/<img[^>]+src=["']([^"']+)["']/);
+      const coverUrl = imgMatch?.[1] ?? null;
+
+      return {
+        title,
+        brief: description.slice(0, 200) + (description.length > 200 ? "…" : ""),
+        slug,
+        url: link,
+        publishedAt: pubDate ? new Date(pubDate).toISOString() : new Date().toISOString(),
+        readTimeInMinutes: estimateReadTime(contentEncoded || description),
+        tags: categories.slice(0, 4).map((name) => ({ name })),
+        coverImage: coverUrl ? { url: coverUrl } : null,
+      };
+    });
   } catch (err) {
     console.error("Failed to fetch Hashnode posts:", err);
     return [];
