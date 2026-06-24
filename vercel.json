@@ -1,0 +1,10 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "installCommand": "npm install",
+  "env": {
+    "YOUTUBE_CHANNEL_ID": "@UCplaceholder",
+    "YOUTUBE_API_KEY": ""
+  }
+}
