@@ -79,8 +79,8 @@ export default async function Home() {
       <div className="bg-navy-2 border-y border-white/[0.07] py-4 px-6">
         <div className="max-w-5xl mx-auto flex flex-wrap justify-center gap-6 md:gap-10">
           {[
-            { icon: "🏆", text: "2× AI Hackathon Winner", sub: "API Summit" },
-            { icon: "🎤", text: "Conference & Meetup Speaker", sub: "" },
+            { icon: "🏆", text: "3× API Summit Hackathon", sub: "2× Winner + 3rd Place" },
+            { icon: "👑", text: "Kong Champion", sub: "" },
             { icon: "🤖", text: "Kong AI Gateway Specialists", sub: "" },
             { icon: "☁️", text: "AWS & Kubernetes Experts", sub: "" },
           ].map(({ icon, text, sub }) => (
@@ -250,27 +250,27 @@ export default async function Home() {
         <h2 className="font-display font-bold text-4xl md:text-5xl tracking-tight mb-10">Recognised in the Industry</h2>
 
         <div className="grid md:grid-cols-2 gap-5">
-          {[
-            {
-              icon: "🏆",
-              title: "AI Hackathon Winner — 2024 & 2025",
-              meta: "API Summit",
-              desc: "Two consecutive years building the best AI-powered solutions at one of the API industry's flagship events — demonstrating practical AI capability under competitive conditions.",
-            },
-            {
-              icon: "🎤",
-              title: "Conference & Meetup Speaker",
-              meta: "Platform Engineering & AI",
-              desc: "Sharing practical knowledge on Kong, Kubernetes, and AI platform engineering with engineering communities — from major conferences to hands-on meetups worldwide.",
-            },
-          ].map(({ icon, title, meta, desc }) => (
-            <div key={title} className="relative bg-navy-2 border border-white/[0.07] rounded-xl p-8 card-accent overflow-hidden">
-              <span className="text-4xl block mb-4">{icon}</span>
-              <h3 className="font-display font-bold text-xl mb-1">{title}</h3>
-              <p className="text-accent text-sm font-semibold mb-4">{meta}</p>
-              <p className="text-muted text-sm leading-relaxed">{desc}</p>
+          {/* Hackathon badges card */}
+          <div className="relative bg-navy-2 border border-white/[0.07] rounded-xl p-8 card-accent overflow-hidden">
+            <div className="flex gap-4 mb-5">
+              {["/badge-2023.png","/badge-2024.png","/badge-2025.png"].map((src, i) => (
+                <Image key={src} src={src} alt={["2023 Winner","2024 Winner","2025 3rd"][i]} width={72} height={72} className="w-16 h-16 object-contain drop-shadow-lg" />
+              ))}
             </div>
-          ))}
+            <h3 className="font-display font-bold text-xl mb-1">API Summit AI Hackathon</h3>
+            <p className="text-accent text-sm font-semibold mb-3">2023 Winner &middot; 2024 Winner &middot; 2025 3rd Place</p>
+            <p className="text-muted text-sm leading-relaxed">Three years competing and placing at Kong&apos;s API Summit AI Hackathon — from building AI-powered API tooling to the Kong Auto Rollback AI Agent in 2025.</p>
+          </div>
+          {/* Kong Champion + Speaker */}
+          <div className="relative bg-navy-2 border border-white/[0.07] rounded-xl p-8 card-accent overflow-hidden">
+            <div className="flex gap-4 mb-5 items-center">
+              <Image src="/logo-kong.png" alt="Kong" width={48} height={48} className="w-12 h-12 object-contain" />
+              <span className="text-3xl">🎤</span>
+            </div>
+            <h3 className="font-display font-bold text-xl mb-1">Kong Champion & Conference Speaker</h3>
+            <p className="text-accent text-sm font-semibold mb-3">Community Expert &middot; Platform Engineering & AI</p>
+            <p className="text-muted text-sm leading-relaxed">Recognised by Kong as a community Champion, and a regular speaker at conferences and meetups on AI infrastructure, Kong AI Gateway, and platform engineering.</p>
+          </div>
         </div>
       </section>
 

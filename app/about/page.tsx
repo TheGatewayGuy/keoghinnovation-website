@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 };
 
 const creds = [
-  { icon: "🏆", label: "2× AI Hackathon Winner — API Summit (2024 & 2025)" },
+  { icon: "🏆", label: "3× API Summit AI Hackathon — 2× Winner (2023, 2024) + 3rd Place (2025)" },
+  { icon: "👑", label: "Kong Champion — Community Expert & Advocate" },
   { icon: "🎤", label: "Conference & Meetup Speaker" },
   { icon: "🤖", label: "Kong AI Gateway Specialist" },
   { icon: "☁️", label: "AWS & Kubernetes Expert" },
@@ -80,6 +81,51 @@ export default function AboutPage() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Kong Champion + Hackathon Badges */}
+      <section className="px-6 md:px-10 py-20 border-b border-white/[0.07]">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            {/* Kong Champion */}
+            <div>
+              <p className="text-accent text-[0.72rem] font-bold uppercase tracking-[0.14em] mb-3">Community</p>
+              <h2 className="font-display font-bold text-3xl md:text-4xl tracking-tight mb-5">Kong Champion</h2>
+              <p className="text-muted leading-relaxed mb-4">
+                Andrew is recognised by Kong as a <strong className="text-offwhite">Kong Champion</strong> — a community designation awarded to practitioners who go above and beyond in sharing knowledge, helping others, and advancing the Kong ecosystem.
+              </p>
+              <p className="text-muted leading-relaxed mb-6">
+                From answering questions in the community forums to publishing in-depth tutorials and speaking at Kong-hosted events, Andrew is an active voice in the Kong and API Summit community.
+              </p>
+              <div className="inline-flex items-center gap-3 bg-navy-2 border border-white/[0.07] rounded-xl px-5 py-3">
+                <Image src="/logo-kong.png" alt="Kong" width={32} height={32} className="w-8 h-8 object-contain" />
+                <span className="font-display font-semibold text-offwhite text-sm">Kong Champion</span>
+                <span className="text-[0.7rem] text-accent font-bold uppercase tracking-wider ml-1">Verified</span>
+              </div>
+            </div>
+
+            {/* Hackathon Badges */}
+            <div>
+              <p className="text-accent text-[0.72rem] font-bold uppercase tracking-[0.14em] mb-3">API Summit Hackathons</p>
+              <h2 className="font-display font-bold text-3xl md:text-4xl tracking-tight mb-5">3 Years Running</h2>
+              <p className="text-muted leading-relaxed mb-8">
+                Competed and placed in the Kong API Summit AI Hackathon three years in a row — winning in 2023 and 2024, and placing 3rd in 2025 with the <em className="not-italic text-offwhite">Kong Auto Rollback AI Agent</em>.
+              </p>
+              <div className="flex gap-5 items-center">
+                {[
+                  { src: "/badge-2023.png", label: "2023 Winner" },
+                  { src: "/badge-2024.png", label: "2024 Winner" },
+                  { src: "/badge-2025.png", label: "2025 3rd Place" },
+                ].map(({ src, label }) => (
+                  <div key={src} className="flex flex-col items-center gap-2">
+                    <Image src={src} alt={label} width={110} height={110} className="w-24 h-24 md:w-28 md:h-28 object-contain drop-shadow-lg" />
+                    <span className="text-[0.7rem] text-muted font-medium">{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -1,9 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Services",
   description: "Kong AI Gateway deployment, AI platform strategy, and cloud-native engineering for teams building AI in production.",
+};
+
+const serviceLogos: Record<string, { src: string; alt: string }[]> = {
+  "01": [
+    { src: "/logo-kong.png", alt: "Kong" },
+  ],
+  "02": [
+    { src: "/logo-openai.png", alt: "OpenAI" },
+    { src: "/logo-anthropic.png", alt: "Anthropic" },
+  ],
+  "03": [
+    { src: "/logo-aws.png", alt: "AWS" },
+    { src: "/logo-k8s.png", alt: "Kubernetes" },
+  ],
 };
 
 const services = [
@@ -82,8 +97,17 @@ export default function ServicesPage() {
             <div>
               <p className="text-accent text-[0.72rem] font-bold uppercase tracking-[0.14em] mb-4">Service {num}</p>
               <h2 className="font-display font-bold text-3xl md:text-4xl tracking-tight mb-3">{title}</h2>
-              <p className="text-accent font-semibold text-sm mb-6">{tagline}</p>
-              <div className="text-4xl">{icon}</div>
+              <p className="text-accent font-semibold text-sm mb-8">{tagline}</p>
+              {/* Tech logos */}
+              {serviceLogos[num] && (
+                <div className="flex flex-wrap gap-4 items-center">
+                  {serviceLogos[num].map(({ src, alt }) => (
+                    <div key={src} className="bg-white rounded-xl p-2.5 flex items-center justify-center" style={{width: 64, height: 64}}>
+                      <Image src={src} alt={alt} width={44} height={44} className="w-11 h-11 object-contain" />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Right */}
