@@ -27,7 +27,7 @@ export default function Footer() {
           <div className="md:col-span-1">
             <Link href="/" className="flex items-center gap-2.5 mb-4">
               <div className="w-8 h-8 rounded-md bg-white flex items-center justify-center p-0.5 shrink-0">
-                <Image src="/keogh-cog.png" alt="Keogh Innovation cog" width={26} height={26} className="w-full h-full object-contain" />
+                <Image src="/keogh-cog-box.png" alt="Keogh Innovation cog" width={26} height={26} className="w-full h-full object-contain" />
               </div>
               <span className="font-display font-bold text-base tracking-tight text-offwhite">
                 Keogh <span className="text-accent">Innovation</span>
