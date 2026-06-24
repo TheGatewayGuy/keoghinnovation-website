@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About",
@@ -66,8 +67,8 @@ export default function AboutPage() {
 
           {/* Profile card */}
           <div className="bg-navy-3 border border-white/[0.07] rounded-xl p-8 text-center">
-            <div className="w-28 h-28 rounded-full bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center font-display font-bold text-4xl text-white mx-auto mb-5">
-              AK
+            <div className="w-28 h-28 rounded-full overflow-hidden mx-auto mb-5 ring-2 ring-accent/30">
+              <Image src="/gateway-guy-avatar.png" alt="Andrew Kew" width={112} height={112} className="w-full h-full object-cover" />
             </div>
             <h2 className="font-display font-bold text-xl mb-1">Andrew Kew</h2>
             <p className="text-accent text-sm font-semibold mb-6">Founder, Keogh Innovation</p>

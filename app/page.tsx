@@ -243,8 +243,8 @@ export default async function Home() {
       <section className="bg-navy-2 border-y border-white/[0.07] px-6 md:px-10 py-24">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div className="bg-navy-3 border border-white/[0.07] rounded-xl p-8 text-center">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-accent to-purple-600 flex items-center justify-center font-display font-bold text-3xl text-white mx-auto mb-5">
-              AK
+            <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-5 ring-2 ring-accent/30">
+              <Image src="/gateway-guy-avatar.png" alt="Andrew Kew" width={96} height={96} className="w-full h-full object-cover" />
             </div>
             <h3 className="font-display font-bold text-xl mb-1">Andrew Kew</h3>
             <p className="text-muted text-sm mb-5">Founder, Keogh Innovation</p>
