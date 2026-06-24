@@ -11,6 +11,13 @@ export interface HashnodePost {
 
 const RSS_URL = "https://thegatewayguy.hashnode.dev/rss.xml";
 
+// Static cover image overrides — keyed by URL slug fragment
+// Add entries here to pin a specific image to an article card
+const COVER_OVERRIDES: Record<string, string> = {
+  "kong-ai-gateway-on-kubernetes-proxy-openai-via-konnect": "/cover-kong-ai-gateway-k8s-openai.png",
+  "kong-ai-gateway-on-kubernetes-apply-compliance-and-safety-policies-with-aws-guardrails": "/cover-kong-ai-gateway-k8s-guardrails.png",
+};
+
 function decodeCDATA(str: string): string {
   return str.replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1").trim();
 }
@@ -80,12 +87,13 @@ export async function getHashnodePosts(count = 6): Promise<HashnodePost[]> {
       // Slug from URL
       const slug = link.split("/").filter(Boolean).pop() ?? "";
 
-      // Cover image: look specifically for Hashnode's cover image CDN path
-      const coverMatch =
-        contentEncoded.match(/src="(https:\/\/cdn\.hashnode\.com\/uploads\/covers\/[^"]+)"/) ??
-        contentEncoded.match(/src='(https:\/\/cdn\.hashnode\.com\/uploads\/covers\/[^']+)'/) ??
-        contentEncoded.match(/<img[^>]+src=["']([^"']+)["']/);
-      const coverUrl = coverMatch?.[1] ?? null;
+      // Cover image: check static overrides first, then Hashnode CDN cover path
+      const overrideKey = Object.keys(COVER_OVERRIDES).find((k) => link.includes(k));
+      const coverUrl = overrideKey
+        ? COVER_OVERRIDES[overrideKey]
+        : (contentEncoded.match(/src="(https:\/\/cdn\.hashnode\.com\/uploads\/covers\/[^"]+)"/) ??
+           contentEncoded.match(/src='(https:\/\/cdn\.hashnode\.com\/uploads\/covers\/[^']+)'/) ??
+           contentEncoded.match(/<img[^>]+src=["']([^"']+)["']/))?.[1] ?? null;
 
       return {
         title,
