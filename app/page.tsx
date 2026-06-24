@@ -7,22 +7,22 @@ export const revalidate = 3600; // ISR: rebuild every hour
 
 const services = [
   {
-    icon: "🔌",
-    title: "API Management & Kong Gateway",
-    desc: "From architecture to production, we deliver Kong API Gateway solutions that are secure, scalable, and built to last — across hybrid and multi-cloud environments.",
-    bullets: ["Kong OSS / Enterprise / Konnect", "Kong on Kubernetes (KIC, Helm)", "AI Gateway & LLM routing", "Plugin design & development"],
+    icon: "🤖",
+    title: "Kong AI Gateway",
+    desc: "The infrastructure layer your AI needs. We design, deploy, and operate Kong AI Gateway — routing LLM traffic safely across providers with rate limiting, cost controls, compliance, and full observability.",
+    bullets: ["LLM proxying (OpenAI, Anthropic, Bedrock, Azure)", "AI safety: guardrails, PII filtering, content controls", "MCP server proxying & monetisation", "Per-consumer rate limiting & usage metering"],
   },
   {
     icon: "🧠",
     title: "AI Platform Strategy",
-    desc: "We help teams build AI capabilities that are governed, observable, and actually useful — not just impressive in a demo.",
-    bullets: ["AI readiness assessment", "LLM routing & gateway architecture", "Safety & compliance frameworks", "Agent platform design (MCP, A2A)"],
+    desc: "We help teams move AI from prototype to production — governed, observable, and built to scale. Real production experience, not slides.",
+    bullets: ["AI readiness & architecture assessment", "Agent platform design (MCP, A2A, tool use)", "AI governance & compliance frameworks", "Model selection, cost management & vendor strategy"],
   },
   {
     icon: "☁️",
-    title: "Cloud & Platform Engineering",
-    desc: "Cloud-native platforms on AWS and Kubernetes — reliable, observable, and built for the teams that will actually run them.",
-    bullets: ["AWS architecture & implementation", "Kubernetes cluster design", "Infrastructure as Code (Terraform)", "Platform engineering & DX"],
+    title: "Platform & Cloud Engineering",
+    desc: "Cloud-native foundations on AWS and Kubernetes that support your AI workloads — reliable, observable, and built for the teams that run them.",
+    bullets: ["AWS architecture & implementation", "Kubernetes for AI workloads", "API management & Kong Gateway (non-AI)", "Infrastructure as Code (Terraform, Helm)"],
   },
 ];
 
@@ -47,12 +47,12 @@ export default async function Home() {
         </div>
 
         <h1 className="relative font-display font-bold text-5xl md:text-7xl tracking-tighter leading-[1.1] max-w-4xl mb-6">
-          Built for{" "}
-          <em className="not-italic text-accent">What&apos;s Next</em>
+          AI Infrastructure,{" "}
+          <em className="not-italic text-accent">Built to Last</em>
         </h1>
 
         <p className="relative text-muted text-lg md:text-xl max-w-[600px] leading-relaxed mb-10">
-          We help engineering teams modernise their infrastructure, unlock the power of APIs, and build AI-ready platforms — with proven expertise in Kong, Kubernetes, and cloud-native architecture.
+          We help engineering teams deploy AI safely and at scale — specialising in Kong AI Gateway, LLM infrastructure, agent platforms, and the cloud-native foundations they run on.
         </p>
 
         <div className="relative flex flex-wrap gap-4 justify-center">
@@ -77,7 +77,7 @@ export default async function Home() {
           {[
             { icon: "🏆", text: "2× AI Hackathon Winner", sub: "API Summit" },
             { icon: "🎤", text: "Conference & Meetup Speaker", sub: "" },
-            { icon: "🔧", text: "Kong Gateway Specialists", sub: "" },
+            { icon: "🤖", text: "Kong AI Gateway Specialists", sub: "" },
             { icon: "☁️", text: "AWS & Kubernetes Experts", sub: "" },
           ].map(({ icon, text, sub }) => (
             <div key={text} className="flex items-center gap-2 text-sm text-muted">
@@ -261,10 +261,10 @@ export default async function Home() {
             <p className="text-accent text-[0.72rem] font-bold uppercase tracking-[0.14em] mb-3">About</p>
             <h2 className="font-display font-bold text-4xl tracking-tight mb-5">Built on Real Experience</h2>
             <p className="text-muted leading-relaxed mb-4">
-              Keogh Innovation was founded by Andrew Kew — a platform and API engineer at the intersection of cloud infrastructure, API management, and AI.
+              Keogh Innovation was founded by Andrew Kew — an AI platform engineer helping teams deploy LLMs safely, govern agents at scale, and build the infrastructure that makes it all work in production.
             </p>
             <p className="text-muted leading-relaxed mb-8">
-              Under the brand <strong className="text-offwhite">The Gateway Guy</strong>, Andrew produces hands-on tutorials, market analysis, and video content followed by engineering teams worldwide.
+              A two-time AI Hackathon winner at API Summit and deep expert in Kong AI Gateway. Under the brand <strong className="text-offwhite">The Gateway Guy</strong>, Andrew publishes hands-on AI infrastructure tutorials and analysis followed by engineers worldwide.
             </p>
             <div className="flex gap-8 mb-8">
               {[{ num: "14+", label: "Published articles" }, { num: "2×", label: "Hackathon wins" }, { num: "3", label: "Content platforms" }].map(({ num, label }) => (

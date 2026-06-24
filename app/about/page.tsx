@@ -4,13 +4,13 @@ import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Keogh Innovation — founded by Andrew Kew, specialist in Kong, Kubernetes, and AI platform engineering.",
+  description: "Keogh Innovation — founded by Andrew Kew, AI platform engineer and Kong AI Gateway specialist. Two-time AI Hackathon winner at API Summit.",
 };
 
 const creds = [
   { icon: "🏆", label: "2× AI Hackathon Winner — API Summit (2024 & 2025)" },
   { icon: "🎤", label: "Conference & Meetup Speaker" },
-  { icon: "🔧", label: "Kong Gateway Specialist (OSS / Enterprise / Konnect)" },
+  { icon: "🤖", label: "Kong AI Gateway Specialist" },
   { icon: "☁️", label: "AWS & Kubernetes Expert" },
   { icon: "✍️", label: "14+ Published Technical Articles" },
   { icon: "▶️", label: "YouTube Creator — The Gateway Guy" },
@@ -55,13 +55,13 @@ export default function AboutPage() {
               Keogh Innovation
             </h1>
             <p className="text-offwhite leading-relaxed mb-4">
-              A specialist consultancy built on deep technical expertise, community presence, and a genuine passion for platform engineering.
+              An AI platform consultancy built on real production experience, deep expertise in Kong AI Gateway, and a genuine passion for helping teams ship AI that actually works.
             </p>
             <p className="text-muted leading-relaxed mb-4">
-              Keogh Innovation was founded by Andrew Kew — a platform and API engineer who has spent years at the intersection of cloud infrastructure, API management, and AI.
+              Keogh Innovation was founded by Andrew Kew — an AI platform engineer helping teams deploy LLMs safely, govern agents in production, and build the cloud-native foundations they run on.
             </p>
             <p className="text-muted leading-relaxed">
-              Andrew is a recognised practitioner in the Kong ecosystem and a regular voice in the platform engineering community. He&apos;s spoken at conferences and meetups on topics ranging from Kong Gateway architecture to AI governance, and has won the AI Hackathon at API Summit two years running.
+              Andrew is a recognised expert in the Kong AI Gateway ecosystem — LLM proxying, AI safety controls, MCP monetisation, and AI governance on Kubernetes. He&apos;s spoken at conferences and meetups worldwide on AI infrastructure, and has won the AI Hackathon at API Summit two years in a row.
             </p>
           </div>
 

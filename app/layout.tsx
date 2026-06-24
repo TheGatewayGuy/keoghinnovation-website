@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Keogh Innovation",
   },
   description:
-    "Specialist consultancy in API management, AI platform strategy, and cloud-native engineering. Experts in Kong API Gateway, Kubernetes, and AWS.",
+    "AI platform consultancy specialising in Kong AI Gateway, LLM infrastructure, and cloud-native engineering. Helping teams build, govern, and scale AI in production.",
   openGraph: {
     title: "Keogh Innovation — Platform & AI Consulting",
     description:
