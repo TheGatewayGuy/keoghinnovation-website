@@ -1,7 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import ArticleCard from "@/components/ArticleCard";
+import YouTubeCard from "@/components/YouTubeCard";
 import { getHashnodePosts } from "@/lib/hashnode";
 import { getDevtoArticles } from "@/lib/devto";
+import { getYouTubeVideos } from "@/lib/youtube";
 
 export const revalidate = 3600; // ISR: rebuild every hour
 
@@ -27,10 +30,11 @@ const services = [
 ];
 
 export default async function Home() {
-  // Fetch latest 3 posts from each source in parallel
-  const [hashnodePosts, devtoPosts] = await Promise.all([
+  // Fetch latest posts/videos from all sources in parallel
+  const [hashnodePosts, devtoPosts, youtubeVideos] = await Promise.all([
     getHashnodePosts(3),
     getDevtoArticles(3),
+    getYouTubeVideos(3),
   ]);
 
   return (
@@ -208,6 +212,37 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* ── YOUTUBE ── */}
+      {youtubeVideos.length > 0 && (
+        <section className="px-6 md:px-10 py-24 max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+            <div>
+              <p className="text-accent text-[0.72rem] font-bold uppercase tracking-[0.14em] mb-3">Video</p>
+              <h2 className="font-display font-bold text-4xl md:text-5xl tracking-tight">Latest from YouTube</h2>
+            </div>
+            <a
+              href="https://www.youtube.com/@TheGatewayGuy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-accent hover:text-offwhite text-sm font-semibold shrink-0"
+            >
+              Visit channel →
+            </a>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {youtubeVideos.map((video) => (
+              <YouTubeCard
+                key={video.id}
+                videoId={video.id}
+                title={video.title}
+                publishedAt={video.publishedAt}
+                thumbnail={video.thumbnail}
+              />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* ── RECOGNITION ── */}
       <section className="px-6 md:px-10 py-24 max-w-6xl mx-auto">

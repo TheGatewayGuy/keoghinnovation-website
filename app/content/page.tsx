@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import ArticleCard from "@/components/ArticleCard";
+import YouTubeCard from "@/components/YouTubeCard";
 import { getHashnodePosts } from "@/lib/hashnode";
 import { getDevtoArticles } from "@/lib/devto";
+import { getYouTubeVideos } from "@/lib/youtube";
 
 export const metadata: Metadata = {
   title: "Content & Tutorials",
@@ -11,9 +13,10 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function ContentPage() {
-  const [hashnodePosts, devtoPosts] = await Promise.all([
+  const [hashnodePosts, devtoPosts, youtubeVideos] = await Promise.all([
     getHashnodePosts(9),
     getDevtoArticles(9),
+    getYouTubeVideos(6),
   ]);
 
   return (
@@ -149,19 +152,46 @@ export default async function ContentPage() {
       {/* YouTube */}
       <section className="px-6 md:px-10 py-20">
         <div className="max-w-6xl mx-auto">
-          <p className="text-accent text-[0.72rem] font-bold uppercase tracking-[0.14em] mb-2">Video content</p>
-          <h2 className="font-display font-bold text-3xl md:text-4xl tracking-tight mb-4">YouTube — The Gateway Guy</h2>
-          <p className="text-muted max-w-xl leading-relaxed mb-8">
-            Video walkthroughs and live demos of Kong, Kubernetes, and AI platform tooling. Watch the real thing — not slides.
-          </p>
-          <a
-            href="https://www.youtube.com/@TheGatewayGuy"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-display font-semibold px-6 py-3 rounded-lg text-sm"
-          >
-            ▶ Visit YouTube Channel
-          </a>
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <p className="text-accent text-[0.72rem] font-bold uppercase tracking-[0.14em] mb-2">Video content</p>
+              <h2 className="font-display font-bold text-3xl md:text-4xl tracking-tight">YouTube — The Gateway Guy</h2>
+            </div>
+            <a
+              href="https://www.youtube.com/@TheGatewayGuy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm font-semibold text-accent hover:text-offwhite shrink-0"
+            >
+              View channel →
+            </a>
+          </div>
+
+          {youtubeVideos.length > 0 ? (
+            <div className="grid md:grid-cols-3 gap-5">
+              {youtubeVideos.map((video) => (
+                <YouTubeCard
+                  key={video.id}
+                  videoId={video.id}
+                  title={video.title}
+                  publishedAt={video.publishedAt}
+                  thumbnail={video.thumbnail}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="bg-navy-2 border border-white/[0.07] rounded-xl p-8 text-center">
+              <p className="text-muted text-sm mb-4">Video content loads once <code className="text-accent">YOUTUBE_CHANNEL_ID</code> is set in Vercel environment variables.</p>
+              <a
+                href="https://www.youtube.com/@TheGatewayGuy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-accent hover:bg-accent-dark text-white font-display font-semibold px-5 py-2.5 rounded-lg text-sm"
+              >
+                ▶ Visit YouTube Channel
+              </a>
+            </div>
+          )}
         </div>
       </section>
     </>
