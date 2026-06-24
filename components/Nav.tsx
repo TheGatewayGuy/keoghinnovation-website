@@ -20,15 +20,20 @@ export default function Nav() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 h-[68px] bg-navy/90 backdrop-blur-md border-b border-white/[0.07]">
       {/* Logo */}
-      <Link href="/" className="flex items-center h-10 shrink-0">
-        <Image
-          src="/keogh-lockup-white.svg"
-          alt="Keogh Innovation"
-          width={200}
-          height={40}
-          className="h-9 w-auto"
-          priority
-        />
+      <Link href="/" className="flex items-center gap-2.5 shrink-0">
+        <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center p-1 shrink-0">
+          <Image
+            src="/keogh-cog.png"
+            alt="Keogh Innovation cog"
+            width={28}
+            height={28}
+            className="w-full h-full object-contain"
+            priority
+          />
+        </div>
+        <span className="font-display font-bold text-[1rem] tracking-tight text-offwhite hidden sm:inline">
+          Keogh <span className="text-accent">Innovation</span>
+        </span>
       </Link>
 
       {/* Desktop links */}
