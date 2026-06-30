@@ -18,7 +18,7 @@ export async function getDevtoArticles(count = 6): Promise<DevtoArticle[]> {
       `https://dev.to/api/articles?username=${DEVTO_USERNAME}&per_page=${count}`,
       {
         headers: { Accept: "application/json" },
-        next: { revalidate: 3600 }, // ISR: revalidate every hour
+        next: { revalidate: 300 }, // ISR: revalidate every 5 minutes
       }
     );
 

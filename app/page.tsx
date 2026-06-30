@@ -6,7 +6,7 @@ import { getHashnodePosts } from "@/lib/hashnode";
 import { getDevtoArticles } from "@/lib/devto";
 import { getYouTubeVideos } from "@/lib/youtube";
 
-export const revalidate = 3600; // ISR: rebuild every hour
+export const revalidate = 300; // ISR: rebuild every 5 minutes
 
 const services = [
   {

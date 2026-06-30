@@ -26,7 +26,7 @@ export async function getYouTubeVideos(count = 6): Promise<YouTubeVideo[]> {
   try {
     const rssUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
     const res = await fetch(rssUrl, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 300 },
     });
 
     if (!res.ok) throw new Error(`YouTube RSS error: ${res.status}`);

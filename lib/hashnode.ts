@@ -57,7 +57,7 @@ export async function getHashnodePosts(count = 6): Promise<HashnodePost[]> {
   try {
     const res = await fetch(RSS_URL, {
       headers: { Accept: "application/rss+xml, application/xml, text/xml" },
-      next: { revalidate: 3600 },
+      next: { revalidate: 300 },
     });
 
     if (!res.ok) throw new Error(`Hashnode RSS error: ${res.status}`);

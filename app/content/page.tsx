@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: "Tutorials, articles, conference talks and videos from The Gateway Guy — covering Kong AI Gateway, Kubernetes, AI platforms, and more.",
 };
 
-export const revalidate = 3600;
+export const revalidate = 300; // ISR: rebuild every 5 minutes
 
 const PINNED_VIDEO_ID = "fMDMgSNbmC8";
 
